@@ -20,14 +20,26 @@ app.get('/', (req, res) => {
     console.log(categori)
     let where = "";
     if (categori) {
-        where = "WHERE book_manager.id_categori = " + categori;
-
+        where = ` WHERE book_manager.id_category = '${categori}'`;
     } else if (location) {
-        where = `WHERE location = ${location}`;
+        where = ` WHERE book_manager.location = '${location}'`;
     }
-    conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ?", where, (err, result) => {
+    conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category" + where, (err, result) => {
         if (err) console.log(err);
-        res.json(result);
+
+        if (result.length > 0) {
+            res.status(200).json({
+                succes: true,
+                status: 200,
+                result: result
+            })
+        } else {
+            res.status(404).json({
+                succes: false,
+                status: 404,
+                message: "Data Not Found"
+            })
+        }
     })
 
 
