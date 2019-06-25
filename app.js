@@ -18,35 +18,17 @@ app.get('/', (req, res) => {
     const categori = req.query.id_category
     const location = req.query.location;
     console.log(categori)
-    // let where = "";
+    let where = "";
     if (categori) {
-        conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.id_category=?", categori, (err, result) => {
-            if (err) console.log(err);
-            res.json(result);
-        })
-    } else if (location) {
-        conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location=?", location, (err, result) => {
-            if (err) console.log(err);
-            res.json(result);
-        })
-    } else {
-        conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category", (err, result) => {
-            // if (err) {
-            //     req.status(404).json({
-            //         succes: false,
-            //         status: 404,
-            //         message: "Data Not Found"
-            //     })
-            // } else {
+        where = "WHERE book_manager.id_categori = " + categori;
 
-            res.status(200).json({
-                succes: true,
-                status: 200,
-                result: result
-            })
-            // }
-        })
+    } else if (location) {
+        where = `WHERE location = ${location}`;
     }
+    conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ?", where, (err, result) => {
+        if (err) console.log(err);
+        res.json(result);
+    })
 
 
 })
