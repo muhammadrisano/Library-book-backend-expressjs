@@ -17,11 +17,8 @@ const conn = mysql.createConnection({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-<<<<<<< HEAD
+
 var whitelist = ['http://36.90.16.135', 'http://localhost']
-=======
-var whitelist = ['http://192.168.6.140', 'http://192.168.6.189']
->>>>>>> e5ec4126184a10c4891e5b1000592c1cdb831246
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     if (whitelist.indexOf(req.header('Origin')) !== -1) {
@@ -47,12 +44,12 @@ app.get('/', cors(corsOptionsDelegate), (req, res) => {
         where = ` WHERE book_manager.location = '${location}'`;
 <<<<<<< HEAD
     }// else {
-       // return res.status(404).json({
-       //     succes: false,
-       //    status: 404,
-       //     message: "Data Not Found"
-       // })
-   // }
+    // return res.status(404).json({
+    //     succes: false,
+    //    status: 404,
+    //     message: "Data Not Found"
+    // })
+    // }
 =======
     } else if (search) {
         where = ` WHERE book_manager.location like '%${search}%' OR category.name_category like '%${search}%'`;
