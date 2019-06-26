@@ -4,7 +4,7 @@ const connection = require('../configs/db')
 module.exports = {
     getBooks: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category"', (err, result) => {
+            connection.query('SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category', (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
