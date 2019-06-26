@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 var whitelist = ['http://36.90.16.135', 'http://localhost']
+
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     if (whitelist.indexOf(req.header('Origin')) !== -1) {
@@ -42,15 +43,6 @@ app.get('/', cors(corsOptionsDelegate), (req, res) => {
         where = ` WHERE book_manager.id_category = '${categori}'`;
     } else if (location) {
         where = ` WHERE book_manager.location = '${location}'`;
-<<<<<<< HEAD
-    }// else {
-    // return res.status(404).json({
-    //     succes: false,
-    //    status: 404,
-    //     message: "Data Not Found"
-    // })
-    // }
-=======
     } else if (search) {
         where = ` WHERE book_manager.location like '%${search}%' OR category.name_category like '%${search}%'`;
     }
@@ -61,7 +53,7 @@ app.get('/', cors(corsOptionsDelegate), (req, res) => {
     //         message: "Data Not Found"
     //     })
     // }
->>>>>>> e5ec4126184a10c4891e5b1000592c1cdb831246
+
     conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category" + where, (err, result) => {
         if (err) console.log(err);
 
