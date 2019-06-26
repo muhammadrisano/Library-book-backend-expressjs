@@ -6,6 +6,7 @@ module.exports = {
         return res.json({ message: 'Hello Library Book API' })
     },
     getBooks: (req, res) => {
+        // const search = req.query.search
         bookModels.getBooks()
             .then((resultBook) => {
                 const result = resultBook
