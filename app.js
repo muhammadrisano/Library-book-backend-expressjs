@@ -32,22 +32,25 @@ var corsOptionsDelegate = function (req, callback) {
 
 
 app.get('/', cors(corsOptionsDelegate), (req, res) => {
-    const categori = req.query.id_category
+    const categori = req.query.id_category;
     const location = req.query.location;
+    const search = req.query.search;
     console.log(categori)
     let where = "";
     if (categori) {
         where = ` WHERE book_manager.id_category = '${categori}'`;
     } else if (location) {
         where = ` WHERE book_manager.location = '${location}'`;
-
-    } else {
-        // return res.status(404).json({
-        //     succes: false,
-        //     status: 404,
-        //     message: "Data Not Found"
-        // })
+    } else if (search) {
+        where = ` WHERE book_manager.location like '%${search}%' OR category.name_category like '%${search}%'`;
     }
+    // else {
+    //     return res.status(404).json({
+    //         succes: false,
+    //         status: 404,
+    //         message: "Data Not Found"
+    //     })
+    // }
     conn.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category" + where, (err, result) => {
         if (err) console.log(err);
 
