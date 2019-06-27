@@ -2,15 +2,26 @@ require('dotenv').config()
 const connection = require('../configs/db')
 
 module.exports = {
-    getBooks: () => {
+    getBooks: (search) => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category', (err, result) => {
-                if (!err) {
-                    resolve(result)
-                } else {
-                    reject(new Error(err))
-                }
-            })
+            if (search) {
+                connection.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE '%" + search + "%' OR category.name_category LIKE'%" + search + "%'", (err, result) => {
+                    if (!err) {
+                        resolve(result)
+                    } else {
+                        reject(new Error(err))
+                    }
+                })
+            } else {
+                connection.query('SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category', (err, result) => {
+                    if (!err) {
+                        resolve(result)
+                    } else {
+                        reject(new Error(err))
+                    }
+                })
+            }
+
         })
     },
     bookDetail: (id_book) => {

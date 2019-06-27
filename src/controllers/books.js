@@ -6,8 +6,8 @@ module.exports = {
         return res.json({ message: 'Hello Library Book API' })
     },
     getBooks: (req, res) => {
-        // const search = req.query.search
-        bookModels.getBooks()
+        const search = req.query.search
+        bookModels.getBooks(search)
             .then((resultBook) => {
                 const result = resultBook
                 MiscHelper.response(res, result, 200)
@@ -20,7 +20,7 @@ module.exports = {
         const id_book = req.params.id_book
         bookModels.bookDetail(id_book)
             .then((resultBook) => {
-                const result = resultBook[0]
+                const result = resultBook
                 MiscHelper.response(res, result, 200)
             })
             .catch((error) => {
