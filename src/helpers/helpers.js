@@ -1,8 +1,6 @@
 module.exports = {
     response: (res, result, status, data) => {
-        console.log(result);
         let resultPrint = {}
-        console.log(result.insertId);
         if (result.affectedRows > 0) {
             if (result.insertId > 0) {
                 resultPrint.status = 'Success',

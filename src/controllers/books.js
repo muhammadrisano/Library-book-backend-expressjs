@@ -34,7 +34,8 @@ module.exports = {
             name,
             writer,
             location,
-            id_category
+            id_category,
+            updated_at: new Date()
         }
         bookModels.updateBook(id_book, data)
             .then((resultBook) => {
@@ -51,7 +52,9 @@ module.exports = {
             name,
             writer,
             location,
-            id_category
+            id_category,
+            created_at: new Date(),
+            updated_at: new Date()
         }
         bookModels.insertBook(data)
             .then((resultBook) => {
