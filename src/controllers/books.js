@@ -39,7 +39,7 @@ module.exports = {
         bookModels.updateBook(id_book, data)
             .then((resultBook) => {
                 const result = resultBook
-                MiscHelper.response(res, result, 200)
+                MiscHelper.response(res, result, 200, [id_book, data])
             })
             .catch((error) => {
                 console.log(error)
@@ -56,7 +56,7 @@ module.exports = {
         bookModels.insertBook(data)
             .then((resultBook) => {
                 const result = resultBook
-                MiscHelper.response(res, result, 200)
+                MiscHelper.response(res, result, 200, data)
             })
             .catch((error) => {
                 console.log(error)
