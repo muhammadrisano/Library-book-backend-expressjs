@@ -25,7 +25,6 @@ module.exports = {
         })
     },
     bookDetail: (id_book) => {
-        console.log(id_book);
         return new Promise((resolve, reject) => {
             connection.query('SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE id_book=?', id_book, (err, result) => {
                 if (!err) {
