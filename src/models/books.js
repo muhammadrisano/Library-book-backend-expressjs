@@ -1,6 +1,5 @@
 require('dotenv').config()
 const connection = require('../configs/db')
-// komentart
 module.exports = {
     getBooks: (search) => {
         return new Promise((resolve, reject) => {
