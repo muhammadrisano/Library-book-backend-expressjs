@@ -5,7 +5,7 @@ module.exports = {
     getBooks: (search) => {
         return new Promise((resolve, reject) => {
             if (search) {
-                connection.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE '%" + search + "%' OR category.name_category LIKE'%" + search + "%'", (err, result) => {
+                connection.query("SELECT id_book, name, writer, location, name_category, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE ? OR category.name_category LIKE ? OR book_manager.name LIKE ?", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
