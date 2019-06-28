@@ -11,8 +11,8 @@
 ## Installation
 ### Clone
 ```
-$ git clone https://github.com/tatasfachrul/simple-REST
-$ cd simple-REST
+$ git clone ttps://github.com/muhammadrisano/tugas-week2-tugas1
+$ cd tugas-week2-tugas1
 $ npm install
 ```
 
@@ -34,8 +34,11 @@ SERVER_PORT=4000
 ```
 $ npm start
 ```
-
+### trials
+```
+check to http://libraryapi.muhammadrisano.online
+```
 ### License
 ----
 
-[Beerware](https://en.wikipedia.org/wiki/Beerware "Beerware") © [Muhammmad Risano Akbar](https://github.com/muhammadrisano/)
+[Website](http://muhammadrisano.online) © [Muhammmad Risano Akbar](https://github.com/muhammadrisano/)
