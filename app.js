@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.SERVER_PORT;
-// app.use(require('./src/routers/books'));
+
 const bookRoute = require('./src/routers/books')
 const categoryRoute = (require('./src/routers/category'))
 const information = require('./src/helpers/information')
