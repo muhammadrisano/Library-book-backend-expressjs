@@ -1,11 +1,12 @@
 require('dotenv').config()
-const connection = require('../configs/db');
+const connection = require('../configs/db')
+
 module.exports = {
-    getLoanbooks: (search) => {
-        console.log(search)
+    getUser: (search) => {
         return new Promise((resolve, reject) => {
             if (search) {
-                connection.query("SELECT `loan_book`.*, `user`.`name` FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number WHERE loan_book.card_number LIKE ? OR user.name LIKE ?", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
+
+                connection.query("SELECT * FROM user WHERE card_number LIKE ?, OR name LIKE ?", [`%${search}%`], (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
@@ -13,21 +14,20 @@ module.exports = {
                     }
                 })
             } else {
-                connection.query("SELECT loan_book.*, user.name FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number", (err, result) => {
+                connection.query("SELECT * FROM user", (err, result) => {
                     if (!err) {
-
                         resolve(result)
                     } else {
                         reject(new Error(err))
                     }
                 })
             }
+
         })
     },
-    loanbooksDetail: (id_loanbook) => {
+    userDetail: (id_user) => {
         return new Promise((resolve, reject) => {
-            console.log(id_loanbook)
-            connection.query('SELECT loan_book.*, user.name FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number WHERE id_loanbook= ?', id_loanbook, (err, result) => {
+            connection.query("SELECT * FROM user WHERE id_user = ?", id_user, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -36,9 +36,9 @@ module.exports = {
             })
         })
     },
-    updateLoanbooks: (id_loanbook, data) => {
+    updateUser: (id_user, data) => {
         return new Promise((resolve, reject) => {
-            connection.query('UPDATE loan_book SET ? WHERE id_loanbook=?', [data, id_loanbook], (err, result) => {
+            connection.query("UPDATE user SET ? WHERE id_user =?", [data, id_user], (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -47,9 +47,9 @@ module.exports = {
             })
         })
     },
-    insertLoanbooks: (data) => {
+    insertUser: (data) => {
         return new Promise((resolve, reject) => {
-            connection.query('INSERT INTO loan_book SET ?', data, (err, result) => {
+            connection.query("INSERT INTO user SET ?", data, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -58,15 +58,17 @@ module.exports = {
             })
         })
     },
-    deleteLoanbooks: (id_loanbooks) => {
+    deleteUser: (id_user) => {
         return new Promise((resolve, reject) => {
-            connection.query('DELETE FROM loan_book WHERE id_loanbook = ?', id_loanbooks, (err, result) => {
+            console.log(id_user)
+            connection.query("DELETE FROM user WHERE id_user = ?", id_user, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
-                    reject(new Error(err))
+                    reject(new Error)
                 }
             })
         })
     }
+
 }
