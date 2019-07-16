@@ -9,6 +9,7 @@ module.exports = {
         loanbooksModels.getLoanbooks(search)
             .then((resultLoanbooks) => {
                 const result = resultLoanbooks
+                console.log(result);
                 MissHelper.response(res, result, 200)
             })
             .catch((error) => {
@@ -16,8 +17,8 @@ module.exports = {
             })
     },
     loanbooksDetail: (req, res) => {
-        const id_loanbooks = req.params.id_loanbooks
-        loanbooksModels.loanbooksDetail(id_loanbooks)
+        const id_loanbook = req.params.id_loanbook
+        loanbooksModels.loanbooksDetail(id_loanbook)
             .then((resultLoanbooks) => {
                 const result = resultLoanbooks
                 MissHelper.response(res, result, 200)
@@ -27,27 +28,25 @@ module.exports = {
             })
     },
     updateLoanbooks: (req, res) => {
-        const id_loanbooks = req.params.id_loanbooks
-        const { card_number, id_books, expired_date, forfeit, information } = req.body
+        const id_loanbook = req.params.id_loanbook
+        const { card_number, id_book, expired_date, forfeit, information } = req.body
         const data = {
             card_number,
-            id_books,
-            id_books,
+            id_book,
             expired_date,
             forfeit,
             information,
             updated_at: new Date()
         }
-
-        loanbooksModels.updateLoanbooks(id_loanbooks, data)
+        loanbooksModels.updateLoanbooks(id_loanbook, data)
             .then((resultloanbooks) => {
                 const result = resultloanbooks;
-                MissHelper.response(res, result, 200, [id_loanbooks, data])
+                MissHelper.response(res, result, 200, [id_loanbook, data])
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, insertLoanbook: (req, res) => {
+    }, insertLoanbooks: (req, res) => {
         const { card_number, id_book, expired_date, forfeit, information } = req.body
         const data = {
             card_number,
@@ -67,11 +66,11 @@ module.exports = {
             })
     },
     deleteLoanbooks: (req, res) => {
-        const id_loanbooks = req.params.id_loanbooks
-        bookModels.deleteLoanbooks(id_loanbooks)
+        const id_loanbooks = req.params.id_loanbook
+        loanbooksModels.deleteLoanbooks(id_loanbooks)
             .then((resultLoanbooks) => {
                 result = resultLoanbooks;
-                MissHelper.result(res, result, 200)
+                MissHelper.response(res, result, 200)
             })
             .catch((error) => {
                 console.log(error)
