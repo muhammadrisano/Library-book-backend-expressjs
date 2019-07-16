@@ -15,3 +15,4 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/books', bookRoute)
 app.use('/category', categoryRoute)
 app.use('/', information)
+app.use('/loanbooks')
