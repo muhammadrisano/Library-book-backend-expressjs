@@ -7,20 +7,21 @@ module.exports = {
         userModels.getUser(search)
             .then((resultUser) => {
                 const result = resultUser
+                console.log(result)
                 MiscHelper.response(res, result, 200)
             })
-            .cact((error) => {
+            .catch((error) => {
                 console.log(error)
             })
     },
     userDetail: (req, res) => {
         const id_user = req.params.id_user
         userModels.userDetail(id_user)
-            .then((result) => {
+            .then((resultUser) => {
                 const result = resultUser
-                MiscHelper.response(res, resutl, 200)
+                MiscHelper.response(res, result, 200)
             })
-            .cact((error) => {
+            .catch((error) => {
                 console.log(error)
             })
     },
@@ -33,7 +34,7 @@ module.exports = {
             phone,
             job,
             address,
-            updated_at = new Date()
+            updated_at: new Date()
         }
         userModels.updateUser(id_user, data)
             .then((resultUser) => {
@@ -52,8 +53,8 @@ module.exports = {
             phone,
             job,
             address,
-            created_at= new Date(),
-            updated_at = new Date()
+            created_at: new Date(),
+            updated_at: new Date()
         }
         userModels.insertUser(data)
             .then((resultUser) => {
