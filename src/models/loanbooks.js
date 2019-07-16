@@ -45,9 +45,9 @@ module.exports = {
             })
         })
     },
-    deleteBook: (id_book) => {
+    deleteBook: (id_loanbooks) => {
         return new Promise((resolve, reject) => {
-            connection.query('DELETE FROM loan_book WHERE id_book = ?', id_book, (err, result) => {
+            connection.query('DELETE FROM loan_book WHERE id_book = ?', id_loanbooks, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
