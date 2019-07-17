@@ -29,12 +29,15 @@ module.exports = {
     },
     updateBook: (req, res) => {
         const id_book = req.params.id_book
-        const { name, writer, location, id_category } = req.body
+        const { name, image, writer, description, location, id_category, status } = req.body
         const data = {
             name,
+            image,
             writer,
+            description,
             location,
             id_category,
+            status,
             updated_at: new Date()
         }
         bookModels.updateBook(id_book, data)
@@ -47,12 +50,15 @@ module.exports = {
             })
     },
     insertBook: (req, res) => {
-        const { name, writer, location, id_category } = req.body
+        const { name, image, writer, description, location, id_category, status } = req.body
         const data = {
             name,
+            image,
             writer,
+            description,
             location,
             id_category,
+            status,
             created_at: new Date(),
             updated_at: new Date()
         }
