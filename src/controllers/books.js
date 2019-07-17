@@ -1,16 +1,24 @@
 const bookModels = require('../models/books');
 const MiscHelper = require('../helpers/helpers');
 
+
 module.exports = {
     getIndex: (req, res) => {
         return res.json({ message: 'Hello Library Book API' })
     },
     getBooks: (req, res) => {
+        var jumlah = 0
+        bookModels.getBooks()
+            .then((resultBook) => {
+                jumlah = resultBook.length
+            })
         const search = req.query.search
-        bookModels.getBooks(search)
+        const page = req.query.page
+        bookModels.getBooks(search, page)
             .then((resultBook) => {
                 const result = resultBook
-                MiscHelper.response(res, result, 200)
+                console.log(result);
+                MiscHelper.response(res, result, 200, jumlah)
             })
             .catch((error) => {
                 console.log(error)
@@ -58,7 +66,7 @@ module.exports = {
             description,
             location,
             id_category,
-            status,
+            status: 0,
             created_at: new Date(),
             updated_at: new Date()
         }
