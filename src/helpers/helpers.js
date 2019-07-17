@@ -23,11 +23,11 @@ module.exports = {
         } else if (result.length > 0) {
             resultPrint.error = null
             resultPrint.status_code = status || 200
-            if (result.length == 1) {
-                resultPrint.result = result[0]
-            } else {
-                resultPrint.result = result
-            }
+            resultPrint.jumlah = data
+            resultPrint.result = result
+
+
+
         } else {
             resultPrint.status = "Not Success"
             resultPrint.status_code = 404
