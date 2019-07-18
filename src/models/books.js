@@ -4,7 +4,7 @@ module.exports = {
     getBooks: (search, page) => {
         return new Promise((resolve, reject) => {
             if (search) {
-                connection.query("SELECT id_book, name, image, writer, description, location, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE ? OR category.name_category LIKE ? OR book_manager.name LIKE ? ORDER BY id_book desc", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
+                connection.query("SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE ? OR category.name_category LIKE ? OR book_manager.name LIKE ? ORDER BY id_book desc", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
@@ -13,7 +13,7 @@ module.exports = {
                 })
             } else if (page) {
 
-                connection.query("SELECT id_book, name, image, writer, description, location, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ORDER BY id_book desc LIMIT " + (page * 12 - 12) + ", 12", (err, result) => {
+                connection.query("SELECT id_book, name, image, writer, description, location,  book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ORDER BY id_book desc LIMIT " + (page * 12 - 12) + ", 12", (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
@@ -22,7 +22,7 @@ module.exports = {
                 })
 
             } else {
-                connection.query('SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ORDER BY id_book desc', (err, result) => {
+                connection.query('SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category,  status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ORDER BY id_book desc', (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
