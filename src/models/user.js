@@ -6,7 +6,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             if (search) {
 
-                connection.query("SELECT * FROM user WHERE card_number LIKE ?, OR name LIKE ?", [`%${search}%`], (err, result) => {
+                connection.query("SELECT * FROM user WHERE card_number LIKE ? OR name LIKE ? OR phone LIKE ?", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
