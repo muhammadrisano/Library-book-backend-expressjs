@@ -5,7 +5,7 @@ module.exports = {
         console.log(search)
         return new Promise((resolve, reject) => {
             if (search) {
-                connection.query("SELECT `loan_book`.*, `user`.`name` FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number WHERE loan_book.card_number LIKE ? OR user.name LIKE ?", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
+                connection.query("SELECT `loan_book`.*, `user`.`name`, `user`.`phone`, `book_manager`.`name` AS `title`, `book_manager`.`image`,`book_manager`.`writer` FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number INNER JOIN book_manager ON loan_book.id_book = book_manager.id_book WHERE loan_book.card_number LIKE ? OR user.name LIKE ? ORDER BY id_loanbook DESC", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
                     if (!err) {
                         resolve(result)
                     } else {
@@ -13,7 +13,7 @@ module.exports = {
                     }
                 })
             } else {
-                connection.query("SELECT loan_book.*, user.name FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number", (err, result) => {
+                connection.query("SELECT `loan_book`.*, `user`.`name`, `user`.`phone`, `book_manager`.`name` AS `title`, `book_manager`.`image`,`book_manager`.`writer` FROM loan_book INNER JOIN user ON loan_book.card_number = user.card_number INNER JOIN book_manager ON loan_book.id_book = book_manager.id_book ORDER BY id_loanbook DESC", (err, result) => {
                     if (!err) {
 
                         resolve(result)
