@@ -24,10 +24,12 @@ module.exports = {
     accesstoken: (req, res, next) => {
         const secretKey = process.env.SECRET_KEY
         const accessToken = req.token
-        const userToken = req.headerSecret['x-constol-user']
-
+        const userToken = req.headers['x-control-user']
+        console.log(accessToken);
         jwt.verify(accessToken, secretKey, (err, decoded) => {
-            if (err && err.name === 'TokenExpiredError') return MissHelper.response(res, null, 401, 'Invalid Token')
+            console.log(userToken);
+            // console.log(decoded.userid)
+            if (err && err.name === 'TokenExpiredError') return MissHelper.response(res, null, 401, 'Token Expired')
             if (err && err.name === 'JsonWebTokenError') return MiscHelper.response(res, null, 401, 'Invalid Token')
             if (parseInt(userToken) !== parseInt(decoded.userid)) return MiscHelper.response(res, null, 401, 'Invalid User Token')
             console.log(decoded)
