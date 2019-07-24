@@ -36,6 +36,28 @@ module.exports = {
             })
         })
     },
+    register: (data) => {
+        return new Promise((resolve, reject) => {
+            connection.query('INSERT INTO user SET ?', data, (err, result) => {
+                if (!err) {
+                    resolve(result)
+                } else {
+                    reject(err)
+                }
+            })
+        })
+    },
+    getByEmail: (email) => {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM user WHERE email = ?', email, (err, result) => {
+                if (!err) {
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
     updateUser: (id_user, data) => {
         return new Promise((resolve, reject) => {
             connection.query("UPDATE user SET ? WHERE id_user =?", [data, id_user], (err, result) => {
