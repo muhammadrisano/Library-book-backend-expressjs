@@ -4,12 +4,38 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.SERVER_PORT;
 const cors = require('cors')
+const xssFilter = require('x-xss-protection');
+const logger = require('morgan');
+
 const bookRoute = require('./src/routers/books')
 const categoryRoute = (require('./src/routers/category'))
 const information = require('./src/helpers/information')
 const loanbooksRoute = require('./src/routers/loanbooks')
 const userRoute = require('./src/routers/user')
+
+const whitelist = process.env.WHITELIST
+
+const corsOptions = (req, callback) => {
+    if (whitelist.split(',').indexOf(req.header('Origin')) !== -1) {
+        console.log('Success')
+        return callback(null, {
+            origin: true
+        })
+    } else {
+        console.log('Failed')
+        return callback(null, {
+            origin: false
+        })
+    }
+}
+
 app.use(cors())
+app.options('*', cors(corsOptions))
+app.use(xssFilter())
+app.use(logger('dev'))
+
+
+
 app.listen(port, () => {
     console.log(`\n App Listen post ${port}`);
 })
