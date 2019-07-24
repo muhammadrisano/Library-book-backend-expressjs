@@ -26,8 +26,6 @@ module.exports = {
             resultPrint.jumlah = data
             resultPrint.result = result
 
-
-
         } else {
             resultPrint.status = "Not Success"
             resultPrint.status_code = 404
