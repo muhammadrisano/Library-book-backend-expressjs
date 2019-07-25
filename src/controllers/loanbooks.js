@@ -17,6 +17,18 @@ module.exports = {
                 console.log(error)
             })
     },
+    loanbooksCardnumber: (req, res) => {
+        const card_number = req.params.card_number
+        console.log(card_number)
+        loanbooksModels.loanbooksCardnumber(card_number)
+            .then((resultLoanbooks) => {
+                const result = resultLoanbooks
+                MissHelper.response(res, result, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
     loanbooksDetail: (req, res) => {
         const id_loanbook = req.params.id_loanbook
         loanbooksModels.loanbooksDetail(id_loanbook)
