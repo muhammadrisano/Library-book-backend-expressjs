@@ -2,6 +2,7 @@ const bookModels = require('../models/books');
 const MiscHelper = require('../helpers/helpers');
 
 
+
 module.exports = {
     getIndex: (req, res) => {
         return res.json({ message: 'Hello Library Book API' })
@@ -58,10 +59,11 @@ module.exports = {
             })
     },
     insertBook: (req, res) => {
-        const { name, image, writer, description, location, id_category, status } = req.body
+
+        const { name, writer, description, location, id_category } = req.body
         const data = {
             name,
-            image,
+            image: 'http://localhost:4000/' + req.file.path,
             writer,
             description,
             location,

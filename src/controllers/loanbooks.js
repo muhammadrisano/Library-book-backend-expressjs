@@ -1,5 +1,7 @@
 const loanbooksModels = require('../models/loanbooks');
-const MissHelper = require('../helpers/helpers')
+const MissHelper = require('../helpers/helpers');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' })
 
 
 
