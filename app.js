@@ -33,7 +33,7 @@ app.use(cors())
 app.options('*', cors(corsOptions))
 app.use(xssFilter())
 app.use(logger('dev'))
-
+app.use('/uploads', express.static('uploads'));
 
 
 app.listen(port, () => {
