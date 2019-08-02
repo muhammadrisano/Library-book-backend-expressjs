@@ -12,7 +12,9 @@ const storage = multer.diskStorage({
         cb(null, new Date().toISOString() + file.originalname);
     }
 })
+
 const upload = multer({ storage: storage })
+console.log(upload)
 Route
     .get('/', BookController.getBooks)
     .get('/:id_book', BookController.bookDetail)

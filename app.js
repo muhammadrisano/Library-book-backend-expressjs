@@ -15,22 +15,22 @@ const userRoute = require('./src/routers/user')
 
 const whitelist = process.env.WHITELIST
 
-const corsOptions = (req, callback) => {
-    if (whitelist.split(',').indexOf(req.header('Origin')) !== -1) {
-        console.log('Success')
-        return callback(null, {
-            origin: true
-        })
-    } else {
-        console.log('Failed')
-        return callback(null, {
-            origin: false
-        })
-    }
-}
+// const corsOptions = (req, callback) => {
+//     if (whitelist.split(',').indexOf(req.header('Origin')) !== -1) {
+//         console.log('Success')
+//         return callback(null, {
+//             origin: true
+//         })
+//     } else {
+//         console.log('Failed')
+//         return callback(null, {
+//             origin: false
+//         })
+//     }
+// }
 
-app.use(cors())
-app.options('*', cors(corsOptions))
+// app.use(cors())
+// app.options('*', cors(corsOptions))
 app.use(xssFilter())
 app.use(logger('dev'))
 app.use('/uploads', express.static('uploads'));

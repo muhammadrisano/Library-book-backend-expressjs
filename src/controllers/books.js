@@ -61,9 +61,11 @@ module.exports = {
     insertBook: (req, res) => {
 
         const { name, writer, description, location, id_category } = req.body
+        console.log(req.file)
         const data = {
             name,
-            image: 'http://localhost:4000/' + req.file.path,
+            // image: 'http://localhost:4000/' + req.file.path,
+            image: 'http://localhost:4000/' + "buku.jpeg",
             writer,
             description,
             location,
