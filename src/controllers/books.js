@@ -15,16 +15,30 @@ module.exports = {
             })
         const search = req.query.search
         const page = req.query.page
-        bookModels.getBooks(search, page)
+        const bookborrow = req.query.bookborrow
+        bookModels.getBooks(search, page, bookborrow)
             .then((resultBook) => {
                 const result = resultBook
                 console.log(result);
-                MiscHelper.response(res, result, 200, jumlah)
+                MiscHelper.response(res, result, 200, false, jumlah)
             })
             .catch((error) => {
                 console.log(error)
             })
     },
+    // getBookBorrow: (req, res) => {
+    //     console.log("helo asd sadf s daf ")
+    //     const search = req.query.search
+    //     bookModel.getBookBorrow(search)
+    //         .then((resultBook) => {
+    //             const result = resultBook;
+    //             console.log(result)
+    //             MiscHelper.response(res, result, 200)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // },
     bookDetail: (req, res) => {
         const id_book = req.params.id_book
         bookModels.bookDetail(id_book)

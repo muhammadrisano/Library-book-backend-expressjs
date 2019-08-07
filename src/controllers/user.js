@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 module.exports = {
     getUser: (req, res) => {
         const search = req.query.search
+        console.log(search)
         userModels.getUser(search)
             .then((resultUser) => {
                 const result = resultUser
@@ -87,10 +88,13 @@ module.exports = {
     },
     updateUser: (req, res) => {
         const id_user = req.params.id_user
-        const { card_number, name, phone, job, address } = req.body
+        const { card_number, fullname, phone, job, address } = req.body
+        console.log(req.body)
+        console.log(req.params)
         const data = {
             card_number,
-            name,
+            fullname,
+            photo: 'http://localhost:4000/' + req.file.path,
             phone,
             job,
             address,
