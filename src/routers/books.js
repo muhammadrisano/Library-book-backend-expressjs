@@ -19,5 +19,5 @@ Route
     .patch('/:id_book', BookController.updateBook)
     .post('/', upload.single('image'), BookController.insertBook)
     .delete('/:id_book', BookController.deleteBook)
-
+// .get('/bookborrow', BookController.getBookBorrow)
 module.exports = Route;

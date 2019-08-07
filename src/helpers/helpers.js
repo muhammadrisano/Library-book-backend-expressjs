@@ -1,15 +1,26 @@
 crypto = require('crypto');
 module.exports = {
 
-    response: (res, result, status, error) => {
+    response: (res, result, status, error, data) => {
         let resultPrint = {}
 
         resultPrint.error = error || null
         resultPrint.status_code = status || 200
+        resultPrint.jumlah = data
         resultPrint.result = result
 
         return res.status(resultPrint.status_code).json(resultPrint)
     },
+
+    // response: (res, result, status, error) => {
+    //     let resultPrint = {}
+
+    //     resultPrint.error = error || null
+    //     resultPrint.status_code = status || 200
+    //     resultPrint.result = result
+
+    //     return res.status(resultPrint.status_code).json(resultPrint)
+    // },
 
     // response: (res, result, status, data) => {
     //     console.log(result);

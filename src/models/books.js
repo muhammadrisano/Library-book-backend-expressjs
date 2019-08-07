@@ -1,7 +1,7 @@
 require('dotenv').config()
 const connection = require('../configs/db')
 module.exports = {
-    getBooks: (search, page) => {
+    getBooks: (search, page, bookborrow) => {
         return new Promise((resolve, reject) => {
             if (search) {
                 connection.query("SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.location LIKE ? OR category.name_category LIKE ? OR book_manager.name LIKE ? ORDER BY id_book desc", [`%${search}%`, `%${search}%`, `%${search}%`], (err, result) => {
@@ -21,6 +21,24 @@ module.exports = {
                     }
                 })
 
+            } else if (bookborrow) {
+                if (search) {
+                    connection.query("SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.status = 0 AND book_manager.name LIKE ? ORDER BY id_book desc", `%${search}%`, (err, result) => {
+                        if (!err) {
+                            resolve(result)
+                        } else {
+                            reject(new Error(err))
+                        }
+                    })
+                } else {
+                    connection.query("SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category, status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category WHERE book_manager.status = 0", (err, result) => {
+                        if (!err) {
+                            resolve(result)
+                        } else {
+                            reject(new Error(err))
+                        }
+                    })
+                }
             } else {
                 connection.query('SELECT id_book, name, image, writer, description, location, book_manager.id_category, name_category,  status, created_at, updated_at FROM book_manager INNER JOIN category ON book_manager.id_category = category.id_category ORDER BY id_book desc', (err, result) => {
                     if (!err) {
@@ -44,6 +62,15 @@ module.exports = {
             })
         })
     },
+    // getBookBorrow: (search) => {
+    //     return new Promise((resolve, reject) => {
+    //         if (search) {
+    //            
+    //         } else {
+    //            
+    //         }
+    //     })
+    // },
     updateBook: (id_book, data) => {
 
         return new Promise((resolve, reject) => {
