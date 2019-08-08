@@ -63,9 +63,6 @@ module.exports = {
                 const dataUser = result[0]
 
                 const usePassword = MiscHelper.setPassword(password, dataUser.salt).passwordHash
-
-
-
                 if (usePassword === dataUser.password) {
                     // dataUser.token = jwt.sign({
                     //     userid: dataUser.id_user

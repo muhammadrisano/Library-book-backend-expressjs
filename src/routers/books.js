@@ -3,7 +3,6 @@ const Route = express.Router();
 const BookController = require('../controllers/books')
 const multer = require('multer');
 
-const UploadImg = require('../helpers/uploadimg')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/')
