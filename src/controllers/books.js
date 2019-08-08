@@ -77,7 +77,7 @@ module.exports = {
         const { name, writer, description, location, id_category } = req.body
         const data = {
             name,
-            image: 'http://localhost:4000/' + req.file.path,
+            image: 'http://192.168.6.126:4000/' + req.file.path,
             writer,
             description,
             location,
