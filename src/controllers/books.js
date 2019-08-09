@@ -1,7 +1,6 @@
 const bookModels = require('../models/books');
 const MiscHelper = require('../helpers/helpers');
-
-
+const cloudinary = require('cloudinary');
 
 module.exports = {
     getIndex: (req, res) => {
