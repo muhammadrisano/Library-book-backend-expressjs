@@ -72,7 +72,7 @@ module.exports = {
             })
     },
     insertBook: async (req, res) => {
-
+        let path = req.file.path
         const { name, writer, description, location, id_category } = req.body
 
         let geturl = async (req) => {
