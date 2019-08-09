@@ -42,6 +42,7 @@ module.exports = {
             address: req.body.address,
             status: 1,
             role_id: 3,
+            photo: 'https://heritagevillagecincinnati.org/wp-content/uploads/2017/12/icon.png',
             created_at: new Date(),
             updated_at: new Date()
         }

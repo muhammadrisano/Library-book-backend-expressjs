@@ -75,9 +75,27 @@ module.exports = {
     insertBook: (req, res) => {
 
         const { name, writer, description, location, id_category } = req.body
+
+        let geturl = async (req) => {
+            cloudinary.config({
+                cloud_name: 'dfezrynjl',
+                api_key: '186247977836927',
+                api_secret: 'aCoxhhJ_hmH37s7c_Ql5ugbMtfI'
+            })
+
+            let dataCloudinary
+            await cloudinary.uploader.upload(path, (result) => {
+                const fs = require('fs')
+                fs.unlinkSync(path)
+                dataCloudinary = result.url
+            })
+
+            return dataCloudinary
+        }
+
         const data = {
             name,
-            image: 'http://192.168.6.126:4000/' + req.file.path,
+            image: await geturl(),
             writer,
             description,
             location,
