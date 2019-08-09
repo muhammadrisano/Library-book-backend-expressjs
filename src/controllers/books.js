@@ -72,7 +72,7 @@ module.exports = {
                 console.log(error)
             })
     },
-    insertBook: (req, res) => {
+    insertBook: async (req, res) => {
 
         const { name, writer, description, location, id_category } = req.body
 
