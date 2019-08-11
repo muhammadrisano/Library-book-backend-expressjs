@@ -99,7 +99,7 @@ module.exports = {
             description,
             location,
             id_category,
-            status: 0,
+            status: 1,
             created_at: new Date(),
             updated_at: new Date()
         }
