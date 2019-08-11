@@ -92,9 +92,9 @@ module.exports = {
 
         let geturl = async (req) => {
             cloudinary.config({
-                cloud_name: 'dirm0rxsm',
-                api_key: '736962856653652',
-                api_secret: 'P9fSm3HfcRf9trnoK6Sjng9DrKM'
+                cloud_name: process.env.CLOUD_NAME_PHOTO,
+                api_key: process.env.API_KEY_PHOTO,
+                api_secret: process.env.API_SECRET_PHOTO
             })
 
             let dataCloudinary
