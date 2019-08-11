@@ -33,10 +33,11 @@ app.use(cors())
 // app.options('*', cors(corsOptions))
 app.use(xssFilter())
 app.use(logger('dev'))
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use(express.static(__dirname + '/uploads'))
 app.use('/photo', express.static('photo'));
 
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.listen(port, () => {
     console.log(`\n App Listen post ${port}`);
 })
