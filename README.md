@@ -46,6 +46,14 @@ DB_PASSWORD="Your_Password"
 DB_NAME="Your_Table"
 
 SERVER_PORT=4000
+
+SECRET_KEY = "secret key you"
+REQUEST_HEADERS = "request header you"
+
+CLOUD_NAME_BOOKS = "xxxxx"
+API_KEY_BOOKS = "xxxxx"
+API_SECRET_BOOKS = "xxxxx"
+
 ```
 ### Start Development Server
 ```
