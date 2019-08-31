@@ -14,10 +14,10 @@
 
 - [Prerequiste](#prerequiste)
 - [Instalation](#installation)
-- [Installation](#installation)
-- [Usage](#usage-for-development)
-- [Screenshots](#screenshots)
+
+
 - [Link Collection Postman](#link-collection-postman)
+- [Structur Folder](#structur-folder)
 - [Contributors](#contributors)
 
 
