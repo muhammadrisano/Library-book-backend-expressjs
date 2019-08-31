@@ -62,6 +62,32 @@ $ npm start
 ## Link Collection Postman
 [Postman](https://www.getpostman.com/collections/fbce4987f2985188f339)
 
+## Structur Folder
+```
+\---src
+|    \---Config
+|    |   +---db.js            
+|    \---Controllers
+|    |   +---auth.js
+|    |   +---helpers
+|    \---helpers
+|    |   +---books.js
+|    |   +---category.js
+|    |   +---loanbooks.js
+|    |   +---user.js
+|    \---models
+|    |   +---books.js
+|    |   +---category.js
+|    |   +---loanbooks.js
+|    |   +---user.js
+|    \---routers
+|    |   +---books.js
+|    |   +---category.js
+|    |   +---loanbooks.js
+|    |   +---user.js
+
+```
+
 ## Contributors
 <center>
   <table>
