@@ -52,9 +52,7 @@ SERVER_PORT=4000
 $ npm start
 ```
 ## Link Collection Postman
-```
 [Postman](https://www.getpostman.com/collections/fbce4987f2985188f339)
-```
 
 ## Contributors
 <center>
